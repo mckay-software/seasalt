@@ -1,4 +1,5 @@
 FROM ubuntu
+MAINTAINER McKay Software <opensource@mckaysoftware.co.nz>
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -y update
 RUN apt-get install -y software-properties-common

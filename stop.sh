@@ -6,15 +6,15 @@ killit() {
 
     name="salt-${kind}${postfix}"
 
-    echo .
-    echo -n "├─ Killing:  "
-    docker kill "$name"
+    echo -n "├─ [${name}]» Killing:  "
+    docker kill "$name" 2>/dev/null || echo "n/a"
 
-    echo -n "└─ Removing: "
-    docker rm "$name"
+    echo -n "├─ [${name}]» Removing: "
+    docker rm "$name" 2>/dev/null || echo "n/a"
 }
 
-killit master 0
-killit minion 1
-killit minion 2
-killit minion 3
+source seasalt.sh || (echo "Fatal: No seasalt.sh found!" && exit 1)
+
+echo .
+seasalt_stop
+echo "└─ Done"
